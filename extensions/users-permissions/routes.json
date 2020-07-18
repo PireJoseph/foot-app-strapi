@@ -1,0 +1,19 @@
+{
+    "routes": [
+        {
+            "method": "PUT",
+            "path": "user/:id",
+            "handler": "User.updateme",
+            "config": {
+                "policies": ["isAuthenticated"],
+                "prefix": "",
+                "description": "Update",
+                "tag": {
+                    "plugin": "users-permissions",
+                    "name": "User",
+                    "actionType": "update"
+                }
+            }
+        }
+    ]
+}
