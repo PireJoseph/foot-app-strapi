@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /**
  * User.js controller
@@ -6,19 +6,41 @@
  * @description: A set of functions called "actions" for managing `User`.
  */
 
-const _ = require('lodash');
-const { sanitizeEntity } = require('strapi-utils');
+const _ = require("lodash");
+const { sanitizeEntity } = require("strapi-utils");
 
-const sanitizeUser = user =>
+const sanitizeUser = (user) =>
   sanitizeEntity(user, {
-    model: strapi.query('user', 'users-permissions').model,
+    model: strapi.query("user", "users-permissions").model,
   });
 
-const formatError = error => [
+const formatError = (error) => [
   { messages: [{ id: error.id, message: error.message, field: error.field }] },
 ];
 
 module.exports = {
+  /**
+   * Retrieve authenticated user.
+   * @return {Object|Array}
+   */
+  async me(ctx) {
+    const user = ctx.state.user;
+
+    if (!user) {
+      return ctx.badRequest(null, [
+        { messages: [{ id: "No authorization header was found" }] },
+      ]);
+    }
+
+    const params = {
+      id: user.id
+    };
+
+    let data =  await strapi.query('user', 'users-permissions').findOne(params, ['role', 'avatar']);
+
+    ctx.send(data);
+  },
+
   /**
    * Update a/an user record.
    * @return {Object}
@@ -33,18 +55,25 @@ module.exports = {
       })
       .get();
 
-    const paramId = ctx.params.id;  
+    const paramId = ctx.params.id;
     const user = ctx.state.user;
     if (!user) {
-        return ctx.badRequest(null, [{ messages: [{ id: 'No authorization header was found' }] }]);
+      return ctx.badRequest(null, [
+        { messages: [{ id: "No authorization header was found" }] },
+      ]);
     }
     const id = user.id;
-    if(parseInt(paramId) !== id) {
-        return ctx.unauthorized(null, [{messages: [{id: 'You are not allowed to update another user profile'}]}]);
+    if (parseInt(paramId) !== id) {
+      return ctx.unauthorized(null, [
+        {
+          messages: [
+            { id: "You are not allowed to update another user profile" },
+          ],
+        },
+      ]);
     }
 
     const { email, username, password } = ctx.request.body;
-
 
     if (_.has(ctx.request.body, "email") && !email) {
       return ctx.badRequest("email.notNull");
@@ -99,6 +128,10 @@ module.exports = {
     let updateData = {
       ...ctx.request.body,
     };
+
+    if (updateData.birthDate === null) {
+      delete updateData.birthDate;
+    }
 
     if (_.has(ctx.request.body, "password") && password === user.password) {
       delete updateData.password;
