@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/game-invitations",
+      "handler": "game-invitation.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/game-invitations/count",
+      "handler": "game-invitation.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/game-invitations/:id",
+      "handler": "game-invitation.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/game-invitations",
+      "handler": "game-invitation.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/game-invitations/:id",
+      "handler": "game-invitation.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/game-invitations/:id",
+      "handler": "game-invitation.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

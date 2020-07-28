@@ -1,0 +1,49 @@
+{
+  "kind": "collectionType",
+  "collectionName": "games",
+  "info": {
+    "name": "Game"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "startAt": {
+      "type": "datetime"
+    },
+    "players": {
+      "plugin": "users-permissions",
+      "collection": "user"
+    },
+    "teamAMembers": {
+      "plugin": "users-permissions",
+      "collection": "user"
+    },
+    "teamBMembers": {
+      "plugin": "users-permissions",
+      "collection": "user"
+    },
+    "maxNumberOfPlayers": {
+      "type": "integer"
+    },
+    "field": {
+      "model": "field"
+    },
+    "teamAGoals": {
+      "type": "integer"
+    },
+    "teamBGoals": {
+      "type": "integer"
+    },
+    "pictures": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "game_invitations",
+  "info": {
+    "name": "Game-invitation"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "message": {
+      "type": "string"
+    },
+    "source": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "recipients": {
+      "plugin": "users-permissions",
+      "collection": "user",
+      "via": "game_invitation"
+    },
+    "game": {
+      "model": "game"
+    }
+  }
+}
