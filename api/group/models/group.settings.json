@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "groups",
+  "info": {
+    "name": "Group"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "isOpen": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "password": {
+      "type": "password",
+      "required": true
+    },
+    "members": {
+      "plugin": "users-permissions",
+      "collection": "user"
+    }
+  }
+}
