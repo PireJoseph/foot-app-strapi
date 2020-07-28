@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "group_invitations",
+  "info": {
+    "name": "Group-invitation"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "message": {
+      "type": "string"
+    },
+    "source": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "recipient": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "isAccepted": {
+      "type": "boolean"
+    },
+    "group": {
+      "model": "group"
+    },
+    "isAnswered": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

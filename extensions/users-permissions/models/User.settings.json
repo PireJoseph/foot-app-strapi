@@ -79,6 +79,10 @@
       ],
       "plugin": "upload",
       "required": false
+    },
+    "game_invitation": {
+      "via": "recipients",
+      "model": "game-invitation"
     }
   }
 }

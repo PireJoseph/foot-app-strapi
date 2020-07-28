@@ -1,0 +1,84 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/group-invitations",
+      "handler": "group-invitation.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/group-invitations/count",
+      "handler": "group-invitation.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/group-invitations/made",
+      "handler": "group-invitation.made",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/group-invitations/received",
+      "handler": "group-invitation.received",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/group-invitations/:id",
+      "handler": "group-invitation.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/group-invitations",
+      "handler": "group-invitation.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/group-invitations/:id",
+      "handler": "group-invitation.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/group-invitations/:id/accept",
+      "handler": "group-invitation.accept",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/group-invitations/:id/decline",
+      "handler": "group-invitation.decline",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/group-invitations/:id",
+      "handler": "group-invitation.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
