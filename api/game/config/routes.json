@@ -10,6 +10,14 @@
     },
     {
       "method": "GET",
+      "path": "/games/me/next",
+      "handler": "game.myNext",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
       "path": "/games/count",
       "handler": "game.count",
       "config": {
@@ -36,6 +44,14 @@
       "method": "PUT",
       "path": "/games/:id",
       "handler": "game.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/games/:id/join-team/",
+      "handler": "game.joinTeam",
       "config": {
         "policies": []
       }
