@@ -68,7 +68,7 @@ module.exports = {
             messages: [
               {
                 id:
-                  "There is already a game invitation for this game to user" +
+                  "There is already a game invitation for this game to user: " +
                   recipient.username,
               },
             ],
