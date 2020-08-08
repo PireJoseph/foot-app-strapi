@@ -50,6 +50,14 @@
     },
     {
       "method": "PUT",
+      "path": "/games/:id/leave",
+      "handler": "game.leave",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
       "path": "/games/:id/join-team/",
       "handler": "game.joinTeam",
       "config": {

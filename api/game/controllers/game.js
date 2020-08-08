@@ -46,4 +46,40 @@ module.exports = {
 
     return sanitizeEntity(data, { model: strapi.models.game });
   },
+
+  // leave a game
+  async leave(ctx) {
+    const user = ctx.state.user;
+    if (!user) {
+      return ctx.badRequest(null, [
+        { messages: [{ id: "No authorization header was found" }] },
+      ]);
+    }
+
+    const gameId = ctx.params.id;
+    let data = await strapi.services.game.findOne({ id: gameId });
+    if (!data) {
+      return ctx.badRequest(null, [
+        { messages: [{ id: "Unable to retrieve the group with this id" }] },
+      ]);
+    }
+
+    data.players = data.players.filter((e) => {
+      return e.id !== user.id;
+    });
+    data.teamAMembers = data.teamAMembers.filter((e) => {
+      return e.id !== user.id;
+    });
+    data.teamBMembers = data.teamBMembers.filter((e) => {
+      return e.id !== user.id;
+    });
+
+    const updatedData = await strapi.services.game.update(
+      { id: gameId },
+      data
+    );
+
+    return sanitizeEntity(updatedData, { model: strapi.models.game });
+
+  },
 };
