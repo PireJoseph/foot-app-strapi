@@ -35,7 +35,7 @@ module.exports = {
 
     // get the recipients
     const recipients = ctx.request.body.recipients;
-    if (!recipients) {
+    if (!recipients || !recipients.length) {
       return ctx.badRequest(null, [
         { messages: [{ id: "No recipient found" }] },
       ]);
